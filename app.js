@@ -7,18 +7,10 @@ const port = 3000;
 
 app.use(cors());
 
-//Host, user, password database
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password:"hejsa",
-    database: "pokemon",
-})
-
 app.get('/',(req, res)=>{
-    connection.query('SELECT `name` FROM pokemon',(error,results)=>{
-        res.json(results);
-    });
+    //Host, user, password database
+    const connection = mysql.createConnection({})
+    connection.query('SELECT `name` FROM pokemon',(error,results)=>{});
 });
 
 app.get('/pokemon/:name/', (req,res)=>{});
