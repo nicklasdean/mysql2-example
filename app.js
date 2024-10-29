@@ -11,10 +11,10 @@ app.use(cors());
 
 //Host, user, password database
 const connection = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"hejsa",
-    database:"pokemon"
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 });
 
 app.get('/',(req, res)=>{
@@ -26,7 +26,7 @@ app.get('/',(req, res)=>{
 //Find single pokemon by name
 app.get('/pokemon/:name/', (req,res)=>{
     const pokemonUserRequest = req.params.name;
-    connection.query('SELECT * FROM pokemon WHERE ´name´ = ?',
+    connection.query('SELECT * FROM pokemon WHERE `name` = ?',
     [pokemonUserRequest],
     (error, results)=>{
         res.send(results);
